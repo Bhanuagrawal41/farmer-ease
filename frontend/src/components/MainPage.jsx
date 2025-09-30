@@ -1,7 +1,8 @@
 import React from "react";
 import Header from "./Header";
 import HeroSection from "./HeroSection";
-import WhyChoose from "./WhyChoose";
+// import WhyChoose from "./WhyChoose";
+import WhyChoose from './whyChoose.jsx'
 import OurFeatures from "./OurFeatures";
 import GetInTouch from "./GetinTouch";
 import ChatBot from "./chatBot";

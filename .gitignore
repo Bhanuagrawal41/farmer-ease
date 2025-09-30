@@ -1,15 +1,22 @@
-# Node.js dependencies (covers both frontend and Backend)
+# Node.js dependencies
 **/node_modules
 
 # Python virtual environment
 ai-services/venv/
 
-# Environment variables (do not commit secrets!)
+# Python cache
+**/__pycache__/
+
+# Environment variables
 **/.env
 
 # VS Code editor-specific files
 .vscode/
 
-# Common Operating System files
+# Operating System files
 .DS_Store
 Thumbs.db
+
+# Model files and executables
+*.pth
+*.exe
