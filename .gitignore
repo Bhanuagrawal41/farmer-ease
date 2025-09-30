@@ -1,0 +1,15 @@
+# Node.js dependencies (covers both frontend and Backend)
+**/node_modules
+
+# Python virtual environment
+ai-services/venv/
+
+# Environment variables (do not commit secrets!)
+**/.env
+
+# VS Code editor-specific files
+.vscode/
+
+# Common Operating System files
+.DS_Store
+Thumbs.db
