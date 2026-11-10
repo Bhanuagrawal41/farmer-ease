@@ -1,14 +1,24 @@
 # Node.js dependencies
-**/node_modules
+**/node_modules/
 
-# Python virtual environment
-ai-services/venv/
+# Build outputs
+**/dist/
+**/build/
+
+# Python virtual environments
+**/venv/
+**/.venv/
+env/
+.env/
 
 # Python cache
 **/__pycache__/
+*.py[cod]
 
 # Environment variables
 **/.env
+**/.env.*
+!.env.example
 
 # VS Code editor-specific files
 .vscode/
