@@ -128,9 +128,11 @@ export default function ChatBot() {
           <div className="space-y-4">
             {/* Greeting card */}
             <div className="flex gap-3">
-              <div className="w-8 h-8 rounded-full bg-forest flex items-center justify-center shrink-0">
-                <Leaf className="w-4 h-4 text-white" />
-              </div>
+              <img
+                src="/assets/logo.png"
+                alt="AI"
+                className="w-8 h-8 rounded-full object-contain shrink-0"
+              />
               <div className="bg-white border border-cardBorder rounded-2xl rounded-tl-sm px-4 py-3 max-w-[88%] shadow-sm">
                 <p className="text-xs font-semibold text-forest mb-1">
                   Rebha Copilot <span className="font-normal text-gray-400 ml-1">Engine v4.2</span>
@@ -171,10 +173,17 @@ export default function ChatBot() {
         {messages.map((m, i) => (
           <div key={i} className={`flex gap-3 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
             {/* Avatar */}
-            <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 text-xs font-bold
-              ${m.role === 'user' ? 'bg-goldDark text-forestAlt' : 'bg-forest text-white'}`}>
-              {m.role === 'user' ? 'MV' : 'AI'}
-            </div>
+            {m.role === 'user' ? (
+              <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 text-xs font-bold bg-goldDark text-forestAlt">
+                MV
+              </div>
+            ) : (
+              <img
+                src="/assets/logo.png"
+                alt="AI"
+                className="w-7 h-7 rounded-full object-contain shrink-0"
+              />
+            )}
 
             {/* Bubble */}
             <div className={`max-w-[80%] ${m.role === 'user' ? 'items-end' : 'items-start'} flex flex-col gap-1`}>
@@ -199,9 +208,11 @@ export default function ChatBot() {
         {/* Thinking indicator */}
         {loading && (
           <div className="flex gap-3">
-            <div className="w-7 h-7 rounded-full bg-forest flex items-center justify-center shrink-0">
-              <Leaf className="w-3.5 h-3.5 text-white" />
-            </div>
+            <img
+              src="/assets/logo.png"
+              alt="AI"
+              className="w-7 h-7 rounded-full object-contain shrink-0"
+            />
             <div className="bg-white border border-cardBorder rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
               <div className="flex gap-1 items-center h-4">
                 <span className="w-1.5 h-1.5 bg-accentGreen rounded-full animate-bounce [animation-delay:0ms]" />

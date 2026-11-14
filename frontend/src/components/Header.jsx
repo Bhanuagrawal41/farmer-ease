@@ -46,11 +46,15 @@ export default function Header() {
 
         {/* Logo */}
         <motion.div
-          className="flex items-center gap-1.5 shrink-0 cursor-pointer"
+          className="flex items-center gap-2 shrink-0 cursor-pointer"
           whileHover={{ scale: 1.04 }}
           onClick={() => scrollTo("home")}
         >
-          <Leaf className="w-6 h-6 text-forest" />
+          <img
+            src="/assets/logo.png"
+            alt="FarmEase Logo"
+            className="w-8 h-8 object-contain"
+          />
           <span className="font-bold text-base text-forest tracking-tight">FarmEase</span>
         </motion.div>
 

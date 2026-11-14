@@ -10,15 +10,17 @@ export default function FloatingChatButton() {
     <>
       {/* ── Floating trigger button ─────────────────────────── */}
       <motion.button
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-forest text-white pl-4 pr-5 py-3 rounded-full shadow-xl hover:bg-accentGreen transition-colors"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-forest text-white pl-3.5 pr-5 py-2.5 rounded-full shadow-xl hover:bg-accentGreen transition-colors"
         onClick={() => setIsOpen(true)}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}
         style={{ display: isOpen ? 'none' : 'flex' }}
       >
-        <div className="w-6 h-6 rounded-full bg-goldDark flex items-center justify-center">
-          <Leaf className="w-3.5 h-3.5 text-forestAlt" />
-        </div>
+        <img
+          src="/assets/logo.png"
+          alt="FarmEase Logo"
+          className="w-7 h-7 object-contain rounded-full"
+        />
         <span className="text-sm font-semibold tracking-tight">New Advisory Query</span>
       </motion.button>
 
@@ -39,9 +41,11 @@ export default function FloatingChatButton() {
           >
             {/* Panel header */}
             <div className="flex items-center gap-3 px-4 py-3 bg-forest text-white shrink-0">
-              <div className="w-8 h-8 rounded-full bg-goldDark flex items-center justify-center">
-                <Leaf className="w-4 h-4 text-forestAlt" />
-              </div>
+              <img
+                src="/assets/logo.png"
+                alt="FarmEase Logo"
+                className="w-8 h-8 object-contain rounded-full"
+              />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold leading-none">Rebha AI</p>
                 <p className="text-[11px] text-white/60 mt-0.5 truncate">
