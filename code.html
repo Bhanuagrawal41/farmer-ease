@@ -1,0 +1,967 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><title>FarmEase - Smart Agriculture &amp; Sustainable Farming</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "primary": "#003629", "primary-container": "#1b4d3e", "surface-container": "#e8f0ea", "on-tertiary-container": "#93bc9d", "surface-dim": "#d4dcd7", "surface-container-highest": "#dde4df", "on-primary-fixed": "#002117", "secondary-fixed": "#ffddb4", "on-tertiary-fixed-variant": "#294e36", "on-error": "#ffffff", "inverse-surface": "#2b322f", "on-secondary": "#ffffff", "error": "#ba1a1a", "on-primary": "#ffffff", "outline-variant": "#c0c9c3", "surface": "#f4fbf6", "on-surface-variant": "#404945", "inverse-primary": "#9ed1bd", "on-tertiary": "#ffffff", "outline": "#707974", "tertiary-fixed-dim": "#a7d1b0", "inverse-on-surface": "#ebf2ed", "on-secondary-fixed": "#291800", "background": "#f4fbf6", "surface-container-lowest": "#ffffff", "surface-bright": "#f4fbf6", "surface-container-low": "#eef5f0", "on-surface": "#161d1a", "on-primary-fixed-variant": "#1d4f40", "on-secondary-fixed-variant": "#633f00", "primary-fixed-dim": "#9ed1bd", "on-primary-container": "#8abda9", "secondary": "#825500", "tertiary": "#0e351f", "on-error-container": "#93000a", "primary-fixed": "#baeed9", "tertiary-fixed": "#c2edcb", "surface-container-high": "#e3eae5", "on-secondary-container": "#754c00", "secondary-fixed-dim": "#fcba5b", "on-tertiary-fixed": "#00210f", "secondary-container": "#ffbd5e", "on-background": "#161d1a", "error-container": "#ffdad6", "surface-tint": "#376757", "surface-variant": "#dde4df", "tertiary-container": "#274c34" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin": "2.5rem", "space-xl": "2.5rem", "space-lg": "1.5rem", "space-sm": "0.5rem", "gutter-mobile": "1rem", "space-md": "1rem", "gutter": "1.5rem", "margin-mobile": "1.25rem", "space-xs": "0.25rem" }, "fontFamily": { "body-lg": ["Hanken Grotesk"], "headline-lg-mobile": ["Epilogue"], "headline-lg": ["Epilogue"], "label-md": ["JetBrains Mono"], "body-md": ["Hanken Grotesk"], "headline-md": ["Epilogue"], "label-sm": ["JetBrains Mono"], "display-lg-mobile": ["Epilogue"], "display-lg": ["Epilogue"], "label-lg": ["JetBrains Mono"], "headline-sm": ["Epilogue"], "body-sm": ["Hanken Grotesk"] }, "fontSize": { "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" }], "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "display-lg": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }], "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(45,38,26,0.05)]"><div class="h-20 w-full px-gutter max-w-7xl mx-auto flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm" data-path="home" href="#"><img alt="FarmEase Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrDoICXmwfSXMflhuRA--Wo-YByZnuM4RoqlAvLE110N5ZOZtfogAX8hP7g-rIbrBmH2kjPAr3Nd2oZX8aGLSbhSMERoOCHpnQivj9Oa3pS1aLPxmA8OsBzA7C4w39_HS5alX0G52u5-7HMW4nng4RbzlzeVaHywqwaKawc9gv7aBrnwRvWi-cX0K_i-tgn2y3bYWEF1xSIiUn3_XLjJxkYgsnsbehQbnbRyOt_WHZhN"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">FarmEase</span></a><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold border-b-2 border-primary"><a aria-current="page" class="py- space-xs transition-colors text-primary font-semibold border-b-2 border-primary" data-path="home" href="#">Home</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface py-space-xs transition-colors" data-path="field-analytics" href="#">Field Analytics</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface py-space-xs transition-colors" data-path="crop-advisory" href="#">Crop Advisory</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface py-space-xs transition-colors" data-path="equipment-machinery" href="#">Equipment &amp; Machinery</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface py-space-xs transition-colors" data-path="smart-market" href="#">Smart Market</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface py-space-xs transition-colors" data-path="about-us" href="#">About Us</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden md:flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-full shadow-[0_2px_6px_-1px_rgba(45,38,26,0.04)]"><span class="material-symbols-outlined text-secondary text-[18px]">wb_sunny</span><span class="font-label-md text-label-md text-on-surface font-medium">74°F · Fair Wind</span></div><div class="hidden lg:flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md"><span class="material-symbols-outlined text-[18px]">language</span><span>EN / Global</span></div><a class="hidden sm:flex items-center gap-space-xs text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm" href="#"><span class="material-symbols-outlined text-[18px]">call</span><span class="hidden xl:inline">1-800-FARM-EASE</span></a><a class="bg-primary hover:bg-primary-container text-on-primary font-body-sm text-body-sm font-medium px-space-md py-space-sm rounded-lg shadow-sm transition-all" data-path="crop-advisory" href="#">Get Started</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full">
+<!-- ==================== HERO SECTION (BLEED UNDER HEADER) ==================== -->
+<section class="relative w-full -mt-20 overflow-hidden min-h-[942px] flex flex-col justify-between" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCr16hoaJ4FL8nmuKctkHxC_uYEORb4fZ5fewtpyyZuXZ6KUOiVlmCJDOJm4XykorZW0YOI_y07jsYdYbJfvcUpBvRQ5ZcTAhISqmVQkqcwym3LItfm_HBWJatYQE-1f0EednG3TrXg1lMK3_9dbcZi2M3K0u8K80jkcJlRrcFIkLsJklxtUrHzSqY62jXKcPits7QXjYkUfB5aIncmYJsQokoEla3j2BnnZISlRjyfXc_UGqNYiYWy&quot;); background-size: cover; background-position: center 35%; background-repeat: no-repeat;">
+<!-- Atmospheric Deep Forest Green Gradient & Organic Glows -->
+<div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/60 pointer-events-none"></div>
+
+
+
+
+<!-- Foreground Content -->
+<div class="relative z-10 max-w-7xl mx-auto px-gutter w-full pt-36 pb-16 flex-1 flex flex-col justify-center">
+<div class="max-w-3xl space-y-space-md backdrop-blur-sm">
+<!-- Badge -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-lowest/15 backdrop-blur-md shadow-sm">
+<span class="text-[14px]">🌾</span>
+<span class="font-label-md text-label-md text-primary-fixed uppercase tracking-wider">Next-Gen Autonomous Agriculture &amp; Yield Optimization</span>
+</div>
+<!-- Headline -->
+<h1 class="font-display-lg text-display-lg text-surface tracking-tight">
+          Cultivating the Future with Intelligent Earth Science
+        </h1>
+<!-- Subheadline -->
+<p class="font-body-lg text-body-lg text-inverse-on-surface/90 max-w-2xl leading-relaxed">
+          FarmEase empowers modern growers, agronomists, and farm cooperatives with real-time soil telemetry, wind-adaptive crop monitoring, and AI-driven harvest forecasting.
+        </p>
+<!-- CTAs -->
+<div class="pt-space-sm flex flex-wrap items-center gap-space-md">
+<a class="inline-flex items-center gap-space-xs px-space-lg py-space-md rounded-lg bg-secondary-container hover:bg-secondary-fixed-dim text-on-secondary-container font-headline-sm text-body-md font-semibold transition-all transform hover:-translate-y-0.5 shadow-md" data-path="field-analytics" href="#">
+<span>Start Free Farm Trial</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<button class="inline-flex items-center gap-space-xs px-space-lg py-space-md rounded-lg bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 backdrop-blur-md text-surface font-headline-sm text-body-md font-medium transition-all" id="openVideoBtn" type="button">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span>Watch Interactive Demo</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Live Hero Metrics Bar -->
+<div class="relative z-10 w-full bg-primary-container/85 backdrop-blur-xl shadow-lg">
+<div class="max-w-7xl mx-auto px-gutter py-space-lg grid grid-cols-2 md:grid-cols-4 gap-space-lg">
+<div class="space-y-1">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg font-bold text-surface tracking-tight">3.2M+</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed">Acres</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary-container">Under Active Monitoring</p>
+</div>
+<div class="space-y-1">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg font-bold text-surface tracking-tight">28.4%</span>
+<span class="material-symbols-outlined text-[18px] text-tertiary-fixed">trending_up</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary-container">Average Yield Uplift</p>
+</div>
+<div class="space-y-1">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg font-bold text-surface tracking-tight">42%</span>
+<span class="font-label-sm text-label-sm text-tertiary-fixed">H₂O / NPK</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary-container">Water &amp; Fertilizer Saved</p>
+</div>
+<div class="space-y-1">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg font-bold text-surface tracking-tight">99.4%</span>
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary-container">Predictive Pest Accuracy</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== SECTION 2: PRECISION AG ECOSYSTEM ==================== -->
+<section class="w-full py-space-xl bg-surface">
+<div class="max-w-7xl mx-auto px-gutter space-y-space-xl">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="max-w-xl space-y-space-xs">
+<div class="inline-flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+            Integrated Smart Ecosystem
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">
+            Engineered for Precision Across Every Hectare
+          </h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+          Harmonizing multi-spectral satellite intelligence, soil robotics, and machine telemetry into one unified command center.
+        </p>
+</div>
+<!-- Bento Grid (4 Pillars) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="group relative rounded-xl bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-surface transition-colors">
+<span class="material-symbols-outlined text-[24px]">sensors</span>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase">Telemetry Core</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Smart Field Sensors</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Multi-spectral canopy scans, in-ground moisture probes at 3 depths, and hyper-local micro-climate wind sensing.
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between text-primary font-label-md text-label-md">
+<span>24/7 Sensor Ping</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative rounded-xl bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-surface transition-colors">
+<span class="material-symbols-outlined text-[24px]">psychology</span>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase">Neural Bio-Models</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">AI Crop Intelligence</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Predictive phenology tracking, variable-rate fertilizer prescription, and pinpoint yield forecasting algorithms.
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between text-primary font-label-md text-label-md">
+<span>99.4% F1-Score</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative rounded-xl bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-surface transition-colors">
+<span class="material-symbols-outlined text-[24px]">agriculture</span>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase">Fleet Automation</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Autonomous Fleet Sync</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Centimeter-accurate RTK harvester guidance, automated pivot irrigation triggers, and scheduled drone scouting passes.
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between text-primary font-label-md text-label-md">
+<span>ISOBUS Compatible</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group relative rounded-xl bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-surface transition-colors">
+<span class="material-symbols-outlined text-[24px]">storefront</span>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase">Open Exchange</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Direct Smart Market</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Lock in forward grain contracts without intermediary fees, source organic soil amendments, and rent heavy machinery.
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between text-primary font-label-md text-label-md">
+<span>Zero Brokerage Cut</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== SECTION 3: LIVE TELEMETRY RADAR DASHBOARD ==================== -->
+<!-- ==================== SECTION: REBHA AI COPILOT WORKSPACE ==================== -->
+<section class="w-full py-space-xl bg-surface border-t border-b border-surface-container-highest/60" id="rebha-copilot">
+<div class="max-w-7xl mx-auto px-gutter space-y-space-lg">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="max-w-2xl space-y-space-xs">
+<div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-primary-fixed/20 border border-primary-fixed text-primary font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px] text-primary">smart_toy</span>
+<span>AGBIO INTELLIGENCE IN ACTION</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">
+          Meet Rebha — Real-Time AI Agronomy Copilot
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Analyze live multi-spectral Sentinel-2 passes, calibrate against 3,240+ in-ground telemetry probes, and synthesize variable-rate crop prescriptions in seconds.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-auto">
+<div class="flex items-center gap-2 px-space-md py-1.5 rounded-full bg-surface-container border border-outline-variant font-label-md text-label-md text-primary">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span>Live Synced: 3,240 Probes</span>
+</div>
+<div class="flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-secondary-container/30 border border-secondary-container text-on-secondary-container font-label-md text-label-md font-medium">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>Engine v4.2</span>
+</div>
+</div>
+</div>
+<!-- Main Copilot Interface Wrapper -->
+<div class="bg-surface-container-lowest rounded-2xl border border-surface-container-highest shadow-xl overflow-hidden">
+<!-- Top Workstation Telemetry & Context Bar -->
+<div class="border-b border-surface-container-highest bg-surface-container-low px-space-lg py-space-sm flex flex-wrap items-center justify-between gap-space-md">
+<!-- Left: Copilot Identity & Multispectral Pass -->
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-primary-fixed shadow-sm">
+<span class="material-symbols-outlined text-[22px]">psychology_alt</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-body-md font-bold text-on-surface">Rebha AI</span>
+<span class="px-2 py-0.5 rounded bg-primary text-primary-fixed font-label-sm text-[11px] font-semibold uppercase tracking-wider">AgBio Precision Copilot</span>
+</div>
+<div class="flex items-center gap-3 font-label-sm text-label-sm text-on-surface-variant pt-0.5">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">satellite_alt</span> Sentinel-2 Multispectral: <strong>1h 48m ago</strong></span>
+<span class="hidden sm:inline text-outline-variant">•</span>
+<span class="hidden sm:inline">Resolution: 10m/pixel (Level-2A BOA)</span>
+</div>
+</div>
+</div>
+<!-- Center & Right: Target Lot Selector & Quick Vitals -->
+<div class="flex flex-wrap items-center gap-space-md">
+<!-- Lot Selector -->
+<div class="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant px-space-md py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-primary text-[18px]">terrain</span>
+<div class="text-left">
+<div class="font-label-sm text-[10px] text-on-surface-variant uppercase leading-none">Target Field Lot</div>
+<div class="font-label-md text-label-md font-semibold text-on-surface">North Valley Lot #4 (Hard Red Spring Wheat)</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] ml-1">expand_more</span>
+</div>
+<!-- Vitals Pill Badges -->
+<div class="flex items-center gap-space-sm">
+<div class="px-space-sm py-1 rounded-md bg-surface-container border border-surface-container-high flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-[15px]">water_drop</span>
+<span>Soil Moist: <strong>34%</strong> <span class="text-on-surface-variant font-normal">Adequate</span></span>
+</div>
+<div class="px-space-sm py-1 rounded-md bg-surface-container border border-surface-container-high flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[15px]">thermostat</span>
+<span>Acc. GDD: <strong>1,418</strong> <span class="text-on-surface-variant font-normal">°F-day</span></span>
+</div>
+<div class="hidden md:flex px-space-sm py-1 rounded-md bg-surface-container border border-surface-container-high items-center gap-1.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[15px]">spa</span>
+<span>Mean NDVI: <strong>0.78</strong></span>
+</div>
+<button class="flex items-center gap-1 px-space-sm py-1 rounded-md bg-surface-container hover:bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm transition-colors" title="Refresh Telemetry">
+<span class="material-symbols-outlined text-[15px]">refresh</span>
+<span class="hidden lg:inline">Refresh</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Workstation Body: Left Diagnostics + Right Live Chat Session -->
+<div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-surface-container-highest">
+<!-- Left Sidebar (Col 4): Field Telemetry & Consultation History -->
+<div class="lg:col-span-4 p-space-md sm:p-space-lg bg-surface-container-low/60 space-y-space-md flex flex-col justify-between">
+<div class="space-y-space-md">
+<!-- Active Field Telemetry Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md border border-surface-container-highest shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between pb-1 border-b border-surface-container-highest/60">
+<div class="flex items-center gap-1.5 text-primary font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[18px]">sensors</span>
+<span>Active Field Telemetry</span>
+</div>
+<span class="font-label-sm text-[10px] px-2 py-0.5 rounded bg-primary-fixed/30 text-on-primary-fixed font-semibold">Probe #104 Active</span>
+</div>
+<p class="font-label-sm text-[11px] text-on-surface-variant leading-tight">Real-time parameters fed into Rebha inference pipeline:</p>
+<div class="grid grid-cols-2 gap-space-sm pt-1">
+<div class="bg-surface-container-low p-2.5 rounded-lg">
+<div class="font-label-sm text-[11px] text-on-surface-variant">Active N-Index</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface mt-0.5">88 <span class="text-body-sm font-normal text-on-surface-variant">/ 100</span></div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-1.5">
+<div class="bg-primary h-1.5 rounded-full w-[88%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-lg">
+<div class="font-label-sm text-[11px] text-on-surface-variant">Soil Temp (15cm)</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface mt-0.5">68.4°F</div>
+<div class="font-label-sm text-[10px] text-primary font-medium mt-1">Nominal Rooting</div>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-lg">
+<div class="font-label-sm text-[11px] text-on-surface-variant">Micro-Wind Gust</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface mt-0.5">14 <span class="text-body-sm font-normal text-on-surface-variant">km/h WNW</span></div>
+<div class="font-label-sm text-[10px] text-secondary font-medium mt-1">Safe Spray Window</div>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-lg">
+<div class="font-label-sm text-[11px] text-on-surface-variant">Vapor Pressure Deficit</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface mt-0.5">1.24 <span class="text-body-sm font-normal text-on-surface-variant">kPa</span></div>
+<div class="font-label-sm text-[10px] text-primary font-medium mt-1">Transpiration Good</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 font-label-sm text-[11px] text-on-surface-variant border-t border-surface-container-highest/60">
+<span>Soil: Sandy Loam (pH 6.6)</span>
+<a class="text-primary hover:underline font-semibold flex items-center gap-0.5" href="#">View Specimen Logs <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</div>
+<!-- Recent Field Consultations History -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface-variant px-1">
+<span class="font-semibold uppercase tracking-wider text-[11px]">Recent Field Consultations</span>
+<span class="text-[11px] font-medium">5 Active</span>
+</div>
+<div class="space-y-1.5">
+<div class="p-space-sm rounded-lg bg-surface-container border-l-4 border-primary shadow-xs cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-body-sm font-bold text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">science</span>
+                      Soil Chemistry &amp; Nitrogen Rx
+                    </span>
+<span class="font-label-sm text-[10px] text-primary font-semibold">Active now</span>
+</div>
+<div class="font-label-sm text-[11px] text-on-surface-variant mt-0.5">Lot #4 Leaching vs Stress analysis · 94% confidence</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-lowest border border-surface-container-highest hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center justify-between">
+<span class="font-body-sm font-medium text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">bug_report</span>
+                      Pest Warning: Wheat Sawfly
+                    </span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Yesterday</span>
+</div>
+<div class="font-label-sm text-[11px] text-on-surface-variant mt-0.5">Larval sweep recommendations</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-lowest border border-surface-container-highest hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center justify-between">
+<span class="font-body-sm font-medium text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_month</span>
+                      Harvest Moisture Window
+                    </span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Aug 14</span>
+</div>
+<div class="font-label-sm text-[11px] text-on-surface-variant mt-0.5">Wheat 13.5% drydown projection</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-lowest border border-surface-container-highest hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center justify-between">
+<span class="font-body-sm font-medium text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">water_drop</span>
+                      Irrigation Pivot Schedule
+                    </span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Aug 12</span>
+</div>
+<div class="font-label-sm text-[11px] text-on-surface-variant mt-0.5">Section C pressure optimization</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Botanical AI Certification Footnote -->
+<div class="pt-space-sm border-t border-surface-container-highest text-on-surface-variant font-label-sm text-[11px] flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>Cross-referenced with <strong>USDA AgResearch</strong>, <strong>CIMMYT Wheat Genomes</strong>, and <strong>ISO-11783 Variable-Rate specs</strong>.</span>
+</div>
+</div>
+<!-- Right Main Panel (Col 8): Interactive Agronomic Consultation -->
+<div class="lg:col-span-8 p-space-md sm:p-space-lg flex flex-col justify-between space-y-space-md bg-surface-container-lowest">
+<!-- Consultation Header -->
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container-highest">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<div>
+<h4 class="font-headline-sm text-body-md font-bold text-on-surface">Consultation Session #4092</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Active Context: Lot #4 (540 Acres) • Spring Wheat</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-lg border border-outline-variant hover:bg-surface-container text-on-surface-variant transition-colors" title="Share Diagnostic">
+<span class="material-symbols-outlined text-[18px]">ios_share</span>
+</button>
+<button class="p-1.5 rounded-lg border border-outline-variant hover:bg-surface-container text-on-surface-variant transition-colors" title="Settings">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+</div>
+<!-- Chat Stream History -->
+<div class="space-y-space-md overflow-y-auto pr-1 max-h-[580px]">
+<!-- Message 1: Rebha Greeting -->
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary text-primary-fixed flex items-center justify-center shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">psychology_alt</span>
+</div>
+<div class="space-y-space-xs max-w-2xl">
+<div class="flex items-center gap-2 font-label-sm text-[11px] text-on-surface-variant">
+<span class="font-bold text-on-surface">Rebha Copilot</span>
+<span>08:45 AM</span>
+<span class="px-1.5 py-0.2 bg-primary-fixed/30 text-on-primary-fixed rounded font-semibold">Engine v4.2</span>
+</div>
+<div class="bg-surface-container-low rounded-2xl rounded-tl-none p-space-md text-on-surface font-body-sm text-body-sm leading-relaxed border border-surface-container-highest/60 space-y-2">
+<p>Hello Marcus, I am <strong>Rebha</strong>, your FarmEase agronomic intelligence copilot. I've ingested and analyzed your Sentinel-2 NDVI multispectral imagery from <strong>08:30 AM today</strong> along with subterranean soil probes across <strong>Lot #4</strong>.</p>
+<p>Overall vegetative vigor is strong (<strong>NDVI 0.78</strong>), but I flagged a slight reflective spectral dip along the upper terrace sandy loam strip. How can I assist your crop decisions today?</p>
+</div>
+<!-- Suggestion Chips -->
+<div class="pt-1 space-y-1">
+<div class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider">Suggested inquiries for Lot #4:</div>
+<div class="flex flex-wrap gap-1.5">
+<button class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high border border-outline-variant font-label-sm text-[11px] text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-secondary">grain</span>
+<span>Analyze nitrogen deficiency risk in North Valley Lot #4</span>
+</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high border border-outline-variant font-label-sm text-[11px] text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-primary">calendar_today</span>
+<span>Calculate optimal harvest window based on recent GDD</span>
+</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high border border-outline-variant font-label-sm text-[11px] text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-primary">tune</span>
+<span>Generate variable-rate fertilizer prescription map</span>
+</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high border border-outline-variant font-label-sm text-[11px] text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-error">pest_control</span>
+<span>Check for wheat stem sawfly threat in low-canopy zones</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Message 2: Marcus Vance Grower Query -->
+<div class="flex items-start justify-end gap-space-sm">
+<div class="space-y-1 max-w-xl text-right">
+<div class="flex items-center justify-end gap-2 font-label-sm text-[11px] text-on-surface-variant">
+<span>08:48 AM</span>
+<span class="font-bold text-on-surface">Marcus Vance (Farm Lead)</span>
+</div>
+<div class="bg-primary text-surface rounded-2xl rounded-tr-none p-space-md text-left font-body-sm text-body-sm leading-relaxed shadow-sm">
+                  Rebha, our west slope in Lot #4 showed lighter canopy on today's satellite pass. Is it nitrogen leaching or moisture stress?
+                </div>
+<div class="flex items-center justify-end gap-1 font-label-sm text-[10px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[12px] text-primary">done_all</span>
+<span>Sent via Web Console</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md font-bold flex items-center justify-center shrink-0 border border-outline-variant">
+                MV
+              </div>
+</div>
+<!-- Message 3: Rebha Detailed Agronomic Diagnosis & Prescription -->
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary text-primary-fixed flex items-center justify-center shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">psychology_alt</span>
+</div>
+<div class="space-y-space-xs max-w-2xl w-full">
+<div class="flex items-center gap-2 font-label-sm text-[11px] text-on-surface-variant">
+<span class="font-bold text-on-surface">Rebha Copilot</span>
+<span>08:49 AM</span>
+<span class="px-1.5 py-0.2 bg-secondary-fixed text-on-secondary-fixed rounded font-semibold">Agronomic Diagnosis</span>
+</div>
+<div class="bg-surface-container-low rounded-2xl rounded-tl-none p-space-md text-on-surface font-body-sm text-body-sm border border-surface-container-highest/60 space-y-space-sm">
+<!-- Diagnostic Banner -->
+<div class="p-space-sm rounded-lg bg-primary-fixed/20 border border-primary-fixed/60 flex items-center gap-2 text-primary font-headline-sm text-body-sm font-semibold">
+<span class="material-symbols-outlined text-[20px] text-primary">fact_check</span>
+<span>Diagnosis: 94% Confidence — High Nitrogen Leaching</span>
+</div>
+<p class="leading-relaxed text-on-surface">
+                    I evaluated cross-spectral band ratios (<strong>REIP &amp; NDRE</strong>) alongside moisture probes at 20cm and 50cm depths. Moisture stress is ruled out: the lower root zone has plenty of moisture. The canopy fade is caused by <strong>severe nitrogen leaching</strong> down into the coarse sand strata following Tuesday night’s <strong>1.84-inch convective storm</strong>.
+                  </p>
+<!-- Telemetry In-Depth HUD / Sensor Proof -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm border border-surface-container-highest space-y-2">
+<div class="flex items-center justify-between font-label-sm text-[11px] text-on-surface-variant">
+<span class="font-semibold text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-primary">equalizer</span> Sensor Probe #104 vs Zone Baseline</span>
+<span>Depth: 15-38 cm</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-label-sm">
+<div class="p-2 rounded bg-surface-container-low">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Subsurface Available N</span>
+<span class="font-bold text-error">42 ppm <span class="font-normal text-on-surface-variant">(Baseline: 75 ppm)</span></span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-1">
+<div class="bg-error h-1.5 rounded-full w-[44%]"></div>
+</div>
+<span class="text-[10px] text-error font-medium">33 ppm below critical heading threshold</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Root-Zone Moisture (38cm)</span>
+<span class="font-bold text-primary">31.2% <span class="font-normal text-on-surface-variant">(Optimal: 28-34%)</span></span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-1">
+<div class="bg-primary h-1.5 rounded-full w-[85%]"></div>
+</div>
+<span class="text-[10px] text-primary font-medium">Root hydration optimal — no irrigation needed</span>
+</div>
+</div>
+<!-- Visual Curve: Spectral Attenuation Profile -->
+<div class="p-2 rounded bg-surface-container-low border border-surface-container-highest/60">
+<div class="flex items-center justify-between font-label-sm text-[10px] text-on-surface-variant mb-1">
+<span class="font-semibold text-on-surface">Canopy Spectral Attenuation Profile (West Slope vs Standard)</span>
+<span>Sentinel Band 8A / 4</span>
+</div>
+<div class="h-12 w-full flex items-end">
+<svg class="w-full h-10" preserveAspectRatio="none" viewBox="0 0 400 40">
+<path d="M0,20 Q100,5 200,28 T400,10" fill="none" stroke="#c0c9c3" stroke-dasharray="3,3" stroke-width="1.5"></path>
+<path d="M0,20 Q100,8 180,34 T400,24" fill="none" stroke="#825500" stroke-width="2.5"></path>
+<circle cx="180" cy="34" fill="#825500" r="3.5"></circle>
+</svg>
+</div>
+<div class="flex justify-between font-label-sm text-[9px] text-on-surface-variant">
+<span>Field Boundary 0m</span>
+<span class="text-secondary font-bold">Peak N-Deficit (-38%)</span>
+<span>West Crest 850m</span>
+</div>
+</div>
+</div>
+<!-- Actionable Prescription Box -->
+<div class="p-space-sm rounded-xl bg-secondary-fixed/30 border border-secondary-fixed space-y-2">
+<div class="flex items-center gap-1.5 text-secondary font-headline-sm text-body-sm font-bold">
+<span class="material-symbols-outlined text-[18px]">assignment_turned_in</span>
+<span>Recommended Variable-Rate Agronomic Prescription:</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface leading-normal">
+                      Deploy a targeted side-dress application of <strong>UAN-32 liquid nitrogen at 28 lbs N/acre</strong> focused strictly on Zone B (84 acres) to recover protein accumulation prior to the Zadoks 55 inflorescence stage.
+                    </p>
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<button class="px-space-md py-1.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold flex items-center gap-1.5 transition-colors shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Export Variable-Rate GeoJSON Rx</span>
+</button>
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container-lowest border border-outline-variant hover:bg-surface-container text-primary font-label-md text-label-md font-medium flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">flight_takeoff</span>
+<span>Schedule Drone High-Res Scout</span>
+</button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-lowest border border-outline-variant hover:bg-surface-container text-on-surface font-label-md text-label-md font-medium flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">monitoring</span>
+<span>Simulate Yield Impact</span>
+</button>
+</div>
+</div>
+<!-- Feedback Micro-Action -->
+<div class="flex items-center justify-between pt-1 font-label-sm text-[11px] text-on-surface-variant border-t border-surface-container-highest/60">
+<span>Was this field diagnosis accurate?</span>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[14px]">thumb_up</span> Yes
+                      </button>
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[14px]">tune</span> Needs Adjusting
+                      </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Prompt Input Bar -->
+<div class="pt-space-sm border-t border-surface-container-highest space-y-1.5">
+<div class="flex items-center justify-between text-[11px] font-label-sm text-on-surface-variant px-1">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                Rebha AgBio-v4.2 Engine • Telemetry Context: Hard Red Spring Wheat • Lot #4
+              </span>
+<span class="text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Precision Spray Calibrated
+              </span>
+</div>
+<div class="relative flex items-center rounded-xl bg-surface-container-low border border-outline-variant focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all p-1.5">
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg transition-colors" title="Upload Field Boundary / Soil Lab Test">
+<span class="material-symbols-outlined text-[20px]">add_photo_alternate</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg transition-colors" title="Voice Dictation in Field">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+<input class="flex-1 bg-transparent px-space-sm text-on-surface placeholder:text-on-surface-variant/70 font-body-sm text-body-sm focus:outline-none" placeholder="Ask Rebha about crop health, variable-rate prescriptions, soil chemistry, or weather impacts..." type="text" value="">
+<button class="px-space-lg py-2 rounded-lg bg-secondary-container hover:bg-secondary-fixed-dim text-on-secondary-container font-headline-sm text-body-sm font-semibold flex items-center gap-1.5 transition-all shadow-sm shrink-0" type="button">
+<span>Dispatch Query</span>
+<span class="material-symbols-outlined text-[18px]">north_east</span>
+</button>
+</div>
+<div class="flex items-center justify-between text-[10px] font-label-sm text-on-surface-variant px-1">
+<span>Rebha uses field sensor telemetry and multi-spectral satellite imagery. Always confirm high-stakes chemical applications with local crop insurance requirements.</span>
+<span class="text-outline-variant hidden sm:inline">Markdown &amp; Farm Coordinates Supported</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="w-full py-space-xl bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-gutter space-y-space-lg">
+<!-- Section Title with Live Pulse Badge -->
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-primary mb-1">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+</span>
+<span>LIVE TELEMETRY FEED · REFRESH INTERVAL 4s</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">
+            Real-Time Field Telemetry &amp; Crop Health Radar
+          </h2>
+</div>
+<!-- Field Switcher Pills -->
+<div class="flex items-center gap-space-xs bg-surface-container p-1 rounded-full text-on-surface">
+<button class="field-btn px-space-md py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all" type="button">North Valley Lot #4</button>
+<button class="field-btn px-space-md py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" type="button">South Basin Corn #12</button>
+<button class="field-btn px-space-md py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" type="button">East Orchard Citrus</button>
+</div>
+</div>
+<!-- Main Telemetry Card Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Visual Field Map + Microclimate HUD -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-[20px]">radar</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">North Valley Wheat Lot #4</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">GPS: 46°52'19.4"N 100°47'12.1"W · HARD RED SPRING WHEAT</p>
+</div>
+</div>
+<div class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-primary">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span>CANOPY: VIGOROUS</span>
+</div>
+</div>
+<!-- NDVI Satellite Visualizer with Interactive Hotspots -->
+<div class="relative w-full h-72 rounded-lg overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover" data-alt="High-resolution agricultural satellite orthomosaic showing lush green geometric crop fields in North Valley with NDVI color gradient overlay and tractor tramlines, soft natural dawn light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVKzvVRXBZWDOrXLq5HljyCNHYvrsaHSAq2lzI2e4oLyUU-WVFuSCxYlsCQikl5Y47Psf1AnKAsyK6JX-mcxOUDRoMibltJ0NLhFQFs-7aBt0L6xIZ5AgpTGGbKhAU_DGxTDq3cmElvsKXColnjKHeqYk4ZjAzNFIRjN9ceo3G8Qn8Dmtw03atFeodEheLoFGiEDHtwLDzf6U2mnQwfPbJsr61WuA7jIshYZIp_pA">
+<!-- Heatmap Scrim -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+<!-- Floating Sensor Nodes on Map -->
+<div class="absolute top-1/4 left-1/3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm shadow-md text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span>Node #104 · 34% Soil H₂O</span>
+</div>
+<div class="absolute bottom-1/3 right-1/4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm shadow-md text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+<span>Drone Alpha · Scouting (92%)</span>
+</div>
+<!-- Live HUD Overlay at bottom of map -->
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-surface font-label-sm text-label-sm">
+<span>SENTINEL-2 L2A · RESOLUTION: 10m/px</span>
+<span>CLOUD COVER: 0.0%</span>
+</div>
+</div>
+<!-- Microclimate Telemetry Readouts (4 Badges) -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded-lg bg-surface-container">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">air</span> Wind Speed
+              </span>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-1">14 <span class="font-label-sm text-body-sm font-normal">km/h</span></p>
+<span class="font-label-sm text-label-sm text-secondary font-medium">WNW · Moderate</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">water_drop</span> Soil Moisture
+              </span>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-1">34<span class="font-label-sm text-body-sm font-normal">%</span></p>
+<span class="font-label-sm text-label-sm text-primary font-medium">Optimal Field Cap</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">biotech</span> Nitrogen (N)
+              </span>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-1">88<span class="font-label-sm text-body-sm font-normal">/100</span></p>
+<span class="font-label-sm text-label-sm text-primary font-medium">Balanced Index</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">wb_sunny</span> Sun Exposure
+              </span>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-1">8.2 <span class="font-label-sm text-body-sm font-normal">hrs</span></p>
+<span class="font-label-sm text-label-sm text-secondary font-medium">High Photosynthesis</span>
+</div>
+</div>
+</div>
+<!-- Harvest Forecast & Bushel Barometer Chart -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between space-y-space-md">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-secondary uppercase font-semibold">Yield Projection</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">+18.2% vs '24</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Harvest Window Forecast</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              Estimated combining target based on GDD (Growing Degree Days) accumulation.
+            </p>
+</div>
+<!-- Radial Progress Gauge (Specialty Component) -->
+<div class="flex items-center justify-center py-space-sm relative">
+<svg class="w-44 h-44 transform -rotate-90" viewBox="0 0 160 160">
+<!-- Background Circle -->
+<circle class="text-surface-container" cx="80" cy="80" fill="transparent" r="68" stroke="currentColor" stroke-width="12"></circle>
+<!-- Highlight Dash Progress -->
+<circle class="text-primary-container" cx="80" cy="80" fill="transparent" r="68" stroke="currentColor" stroke-dasharray="427" stroke-dashoffset="105" stroke-linecap="round" stroke-width="12"></circle>
+<!-- Accent Segment -->
+<circle class="text-secondary" cx="80" cy="80" fill="transparent" r="68" stroke="currentColor" stroke-dasharray="427" stroke-dashoffset="360" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">ESTIMATED YIELD</span>
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface leading-none mt-1">94.6</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold mt-1">bu / acre</span>
+</div>
+</div>
+<!-- Micro Weekly Trend Sparks -->
+<div class="space-y-space-xs">
+<div class="flex justify-between items-center font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Optimal Window:</span>
+<span class="text-on-surface font-semibold">Aug 18 - Aug 24 (6 Days)</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-primary h-2 rounded-full w-4/5"></div>
+</div>
+<div class="flex justify-between items-center font-label-sm text-label-sm text-on-surface-variant pt-1">
+<span>Current GDD: 1,840</span>
+<span>Target: 2,100</span>
+</div>
+</div>
+<a class="w-full py-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md font-semibold text-center transition-colors" data-path="field-analytics" href="#">
+            Open Advanced Spectral Inspector
+          </a>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== SECTION 4: TRUST & GROWER TESTIMONIALS ==================== -->
+<section class="w-full py-space-xl bg-surface">
+<div class="max-w-7xl mx-auto px-gutter space-y-space-xl">
+<!-- Section Title & Credentials -->
+<div class="text-center max-w-2xl mx-auto space-y-space-xs">
+<span class="font-label-md text-label-md text-secondary uppercase font-semibold tracking-wider">Trusted by 14,000+ Growers Globally</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">
+          Why Agricultural Leaders Rely on FarmEase
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          From multi-generational family farms to enterprise agribusinesses with 50,000+ acres under management.
+        </p>
+</div>
+<!-- Testimonial Cards Mosaic -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Testimonial 1 -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="space-y-space-sm">
+<div class="flex text-secondary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "We shaved $47,000 off our fertilizer bill on our 4,200-acre corn operation in Iowa. FarmEase pointed out that our east slope had excess nitrogen while the sandy bench was starving."
+            </p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of Marcus Vance, a weathered midwestern commercial corn and soybean grower wearing a duck canvas barn coat in front of John Deere combines at sunrise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwWn50grMc9MUMd5LbcyRRPNedbmjFJaWUPowsETsyvvLsWHHnNXI-DMpm8qtyjZga9u7uxcdvkV94u1j1eYFCd0p9YpRAYnqQCs9CCZV8nN6pKXLnA21mz8LLiKQj_pHmAeL3BPfK8CLfukNanptVAB1wdrzfaFKM_L0zLf_Sz9Gd7VCdEzIPsqrNp2MpY0EuwzJMRYPgO4YBW37R1i8Kf1Olm1KR7qEH3JrWFp4">
+<div>
+<h5 class="font-headline-sm text-body-md font-bold text-on-surface">Marcus Vance</h5>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Managing Partner, PrairieRidge Ag (Iowa)</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="space-y-space-sm">
+<div class="flex text-secondary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "The early pest alerts flagged wheat stem sawfly larvae three weeks before our visual scouts would have spotted it. That alert alone preserved 32% of our winter durum harvest."
+            </p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Close up portrait of Elena Rostova, agronomist holding digital tablet outdoors in a golden wheat field, wearing field vest and smiling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtWdoo6FwjzRfExM5R9mUjlJaKDAmrvZFMhEQlRvheqZR-LfdXI-SKf3dv4s8TwWPzeO2zvTMf9j-9ULeN0Iyr1PFWjGHeLWrYMhrTaWtX7YTpTVd4wcqg_8sd4nV4Y_EKgWb-GKCqvhjkoiMS62EgEKik-zvFFy5vdb1Sl9Fejr-Cbw2a4yjABEwEIdm1qk0MudLzGiZKm1fMtA4hvb8-OIh90hmCr01SXkm5Ymc">
+<div>
+<h5 class="font-headline-sm text-body-md font-bold text-on-surface">Dr. Elena Rostova</h5>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Lead Agronomist, Great Plains Cooperative</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="space-y-space-sm">
+<div class="flex text-secondary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "Integrating our automated center pivot rigs with FarmEase soil sensors lowered our aquifer water extraction by 41% with absolutely zero dip in almond kernel density."
+            </p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of Julian Chen, California orchard producer and smart agriculture investor in an irrigated almond grove during late afternoon sun." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDZ1ovT6LrX48bQbXma1efKT5sQtnl9NarT0OBMhK2gmK9u6OrEx6tS7AzyC3W_cTSfrgUy1nHn0x4rHysRCWJH0bQ2si8_mdHK4w77aq6gJC3IMm5UMPOZxbjUGUtCnQOTprbOuJWkzz4iGMJN5oRdLsNoR-qO3Ksjb2d_AKCgpY44lAged_e0TSIqleiDFQDCWvJeQm_LmNxFkShvTBTkOzcSR2nVqayNzye8NQ">
+<div>
+<h5 class="font-headline-sm text-body-md font-bold text-on-surface">Julian Chen</h5>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Operations Director, Central Valley Orchards</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Trust Badges & Certifications Strip -->
+<div class="pt-space-lg flex flex-wrap items-center justify-center gap-space-xl opacity-75">
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[24px]">verified_user</span>
+<span>USDA Organic Certified API</span>
+</div>
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[24px]">workspace_premium</span>
+<span>ISO 22000 Ag Safety</span>
+</div>
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[24px]">hub</span>
+<span>AgTech Alliance Standard</span>
+</div>
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[24px]">cloud_done</span>
+<span>SOC-2 Certified Farm Cloud</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== SECTION 5: HIGH-IMPACT CTA & YIELD CALCULATOR ==================== -->
+<section class="w-full py-space-xl bg-primary-container text-surface">
+<div class="max-w-7xl mx-auto px-gutter">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Text Left -->
+<div class="lg:col-span-6 space-y-space-md">
+<span class="px-space-md py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold uppercase tracking-wider">
+            Instant Acreage ROI Estimate
+          </span>
+<h2 class="font-display-lg-mobile md:font-headline-lg text-display-lg-mobile md:text-headline-lg font-bold tracking-tight text-surface">
+            Ready to Transform Your Acreage into a High-Yield Operation?
+          </h2>
+<p class="font-body-lg text-body-lg text-surface-container-high leading-relaxed">
+            Configure your farm's parameters to forecast annual yield gains, chemical input reductions, and net operational profit improvements.
+          </p>
+<div class="space-y-space-xs pt-space-xs font-body-sm text-body-sm text-surface-container-highest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-fixed text-[18px]">check_circle</span>
+<span>14-day zero-risk trial including satellite telemetry onboarding</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-fixed text-[18px]">check_circle</span>
+<span>Direct hardware sync with John Deere, Case IH, and AGCO machinery</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-fixed text-[18px]">check_circle</span>
+<span>Dedicated regional agronomist assigned to your telemetry feed</span>
+</div>
+</div>
+</div>
+<!-- Calculator Card Right -->
+<div class="lg:col-span-6 bg-surface-container-lowest text-on-surface rounded-2xl p-space-lg shadow-xl space-y-space-md">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Interactive Yield Booster</h4>
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-primary font-semibold">2025 Algorithmic Model</span>
+</div>
+<!-- Form Fields -->
+<div class="space-y-space-sm">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">TOTAL CULTIVATED ACREAGE</label>
+<div class="relative flex items-center">
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary" id="calcAcres" type="number" value="1250">
+<span class="absolute right-space-md font-label-md text-label-md text-on-surface-variant">ACRES</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">PRIMARY CROP</label>
+<select class="w-full h-11 px-space-md bg-surface-container-low rounded-lg text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" id="calcCrop">
+<option value="wheat">Spring Wheat</option>
+<option value="corn">Field Corn</option>
+<option value="soy">Soybeans</option>
+<option value="cotton">Upland Cotton</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">REGION</label>
+<select class="w-full h-11 px-space-md bg-surface-container-low rounded-lg text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary">
+<option>North American Plains</option>
+<option>Corn Belt (Midwest)</option>
+<option>Pacific West Coast</option>
+<option>European Union Basin</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Dynamic Output Window -->
+<div class="p-space-md rounded-xl bg-surface-container grid grid-cols-2 gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">ESTIMATED YIELD BOOST</span>
+<p class="font-headline-lg text-headline-lg font-bold text-primary mt-1" id="yieldBoostVal">+26.4%</p>
+<span class="font-label-sm text-label-sm text-on-surface-variant">+16.5 bu/acre avg</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">EST. ANNUAL SAVINGS</span>
+<p class="font-headline-lg text-headline-lg font-bold text-secondary mt-1" id="savingsVal">$48,250</p>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Input &amp; Fuel optimization</span>
+</div>
+</div>
+<button class="w-full h-12 bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-body-md font-semibold rounded-lg shadow-sm transition-all flex items-center justify-center gap-2" type="button">
+<span>Claim Your Custom Field Plan</span>
+<span class="material-symbols-outlined text-[18px]">east</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Script for Field Toggle and Live Calculator -->
+<script>
+    // Yield Calculator logic
+    const acresInput = document.getElementById('calcAcres');
+    const cropSelect = document.getElementById('calcCrop');
+    const boostDisplay = document.getElementById('yieldBoostVal');
+    const savingsDisplay = document.getElementById('savingsVal');
+
+    function updateCalculations() {
+      const acres = parseFloat(acresInput.value) || 0;
+      const crop = cropSelect.value;
+      let multiplier = 38.5; // base $/acre savings
+      let boostPct = 26.4;
+
+      if (crop === 'corn') {
+        multiplier = 46.2;
+        boostPct = 29.1;
+      } else if (crop === 'soy') {
+        multiplier = 34.0;
+        boostPct = 24.8;
+      } else if (crop === 'cotton') {
+        multiplier = 52.0;
+        boostPct = 27.5;
+      }
+
+      const totalSavings = Math.round(acres * multiplier);
+      savingsDisplay.textContent = '$' + totalSavings.toLocaleString();
+      boostDisplay.textContent = '+' + boostPct + '%';
+    }
+
+    if (acresInput && cropSelect) {
+      acresInput.addEventListener('input', updateCalculations);
+      cropSelect.addEventListener('change', updateCalculations);
+    }
+
+    // Telemetry Field Switcher Demo logic
+    const fieldButtons = document.querySelectorAll('.field-btn');
+    fieldButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        fieldButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary');
+          b.classList.add('text-on-surface-variant');
+        });
+        button.classList.add('bg-primary', 'text-on-primary');
+        button.classList.remove('text-on-surface-variant');
+      });
+    });
+
+    // Simple Interactive Demo Button micro-action
+    const videoBtn = document.getElementById('openVideoBtn');
+    if (videoBtn) {
+      videoBtn.addEventListener('click', () => {
+        alert('FarmEase interactive walkthrough session initialized. Connecting with demo soil sensor...');
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface pt-space-xl pb-space-lg"><div class="max-w-7xl mx-auto px-gutter"><div class="flex flex-wrap items-center justify-between gap-space-md pb-space-lg mb-space-lg border-b border-surface-container-highest"><div class="flex items-center gap-space-md flex-wrap"><div class="flex items-center gap-space-xs bg-surface-container-high px-space-md py-space-xs rounded-full font-label-sm text-label-sm text-primary"><span class="material-symbols-outlined text-[16px]">eco</span><span>100% Regenerative Verified</span></div><div class="flex items-center gap-space-xs bg-surface-container-high px-space-md py-space-xs rounded-full font-label-sm text-label-sm text-primary"><span class="material-symbols-outlined text-[16px]">water_drop</span><span>Precision Water Certified</span></div><div class="flex items-center gap-space-xs bg-surface-container-high px-space-md py-space-xs rounded-full font-label-sm text-label-sm text-primary"><span class="material-symbols-outlined text-[16px]">solar_power</span><span>Carbon-Neutral Grid</span></div></div><div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-primary">verified</span><span>USDA &amp; GlobalGAP Data Standardized</span></div></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-lg mb-space-xl"><div class="lg:col-span-2 pr-space-md"><div class="flex items-center gap-space-sm mb-space-sm"><img alt="FarmEase Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrDoICXmwfSXMflhuRA--Wo-YByZnuM4RoqlAvLE110N5ZOZtfogAX8hP7g-rIbrBmH2kjPAr3Nd2oZX8aGLSbhSMERoOCHpnQivj9Oa3pS1aLPxmA8OsBzA7C4w39_HS5alX0G52u5-7HMW4nng4RbzlzeVaHywqwaKawc9gv7aBrnwRvWi-cX0K_i-tgn2y3bYWEF1xSIiUn3_XLjJxkYgsnsbehQbnbRyOt_WHZhN"><span class="font-headline-sm text-headline-sm text-primary">FarmEase</span></div><p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md max-w-sm">Field-to-cloud agricultural intelligence engineered for commercial growers, agronomists, and sustainable farm networks worldwide.</p><form class="flex items-center gap-space-xs max-w-sm"><div class="relative flex-1"><input class="w-full h-11 px-space-md rounded-lg bg-surface-container-lowest text-on-surface border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary font-body-sm text-body-sm" placeholder="Enter farm email..." type="email"></div><button class="h-11 px-space-md bg-primary hover:bg-primary-container text-on-primary rounded-lg font-body-sm text-body-sm transition-colors" type="button">Subscribe</button></form></div><div><h4 class="font-headline-sm text-body-md font-semibold text-on-surface mb-space-sm">Product Platform</h4><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-primary transition-colors" data-path="field-analytics" href="#">Satellite Telemetry</a></li><li><a class="hover:text-primary transition-colors" data-path="crop-advisory" href="#">AI Agronomist Engine</a></li><li><a class="hover:text-primary transition-colors" data-path="equipment-machinery" href="#">Fleet &amp; Harvester Sync</a></li><li><a class="hover:text-primary transition-colors" data-path="smart-market" href="#">Grain &amp; Crop Exchange</a></li></ul></div><div><h4 class="font-headline-sm text-body-md font-semibold text-on-surface mb-space-sm">Operating Solutions</h4><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-primary transition-colors" href="#">Soil Chemistry Tracking</a></li><li><a class="hover:text-primary transition-colors" href="#">Micro-Climate Station</a></li><li><a class="hover:text-primary transition-colors" href="#">Irrigation Automation</a></li><li><a class="hover:text-primary transition-colors" href="#">Supply-Chain Traceability</a></li></ul></div><div><h4 class="font-headline-sm text-body-md font-semibold text-on-surface mb-space-sm">Compliance &amp; Trust</h4><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-primary transition-colors" href="#">Carbon Credit Ledger</a></li><li><a class="hover:text-primary transition-colors" href="#">Environmental Protocols</a></li><li><a class="hover:text-primary transition-colors" href="#">Data Privacy &amp; Farm Rights</a></li><li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li></ul></div></div><div class="pt-space-md border-t border-surface-container-highest flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-md text-label-md text-on-surface-variant"><div>© 2025 FarmEase Intelligence Inc. Cultivating sustainable precision agriculture.</div><div class="flex items-center gap-space-md"><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a><a class="hover:text-primary transition-colors" href="#">Security Whitepaper</a><a class="hover:text-primary transition-colors" href="#">API Integration</a></div></div></div></footer>
+
+</body></html>

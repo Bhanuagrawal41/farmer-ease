@@ -1,260 +1,286 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Camera, Mic, StopCircle, Send, Leaf } from 'lucide-react'; 
-// NOTE: Ensure lucide-react is installed: npm install lucide-react
+import { Camera, Mic, StopCircle, Send, RotateCcw, Leaf, Zap } from 'lucide-react';
+
+const SYSTEM_PROMPT = `You are Rebha AI — FarmEase's agronomic intelligence copilot. You ingest satellite imagery, soil probe data, and weather telemetry to deliver precise, actionable farm intelligence. Answer clearly and concisely. When relevant, cite confidence levels (e.g. "84% confidence"), mention sensor readings, and suggest variable-rate prescriptions. Always end with a question to further assist the farmer.`;
+
+const SUGGESTED = [
+  "Analyze nitrogen deficiency risk in North Valley Lot #4",
+  "Calculate optimal harvest window based on recent GDD",
+  "Generate variable-rate fertilizer prescription map",
+  "Check for wheat stem sawfly threat in low-canopy zones",
+];
 
 export default function ChatBot() {
-    const [messages, setMessages] = useState([{
-        role: 'system',
-        content: `You are KrishiSakthi — an AI assistant that helps farmers in Kerala. Answer clearly and kindly in Malayalam or English depending on the user's language. Give practical, actionable farming advice, suggest low-cost remedies, mention safety & environmental concerns, and when appropriate recommend contacting extension officers. If the user asks for weather or market prices, say you can fetch live data if provided or call external APIs.`
-    }]);
-    const [input, setInput] = useState('');
-    const [listening, setListening] = useState(false);
-    const [language, setLanguage] = useState('auto');
-    const [loading, setLoading] = useState(false);
-    
-    // Refs for DOM elements
-    const recognitionRef = useRef(null);
-    const messagesEndRef = useRef(null);
-    const imageInputRef = useRef(null); // Ref for the hidden file input
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const [listening, setListening] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [sessionId] = useState(() => `#${Math.floor(Math.random() * 9000) + 1000}`);
 
-    // ===================================================
-    // LIFECYCLE & UTILITIES
-    // ===================================================
+  const recognitionRef = useRef(null);
+  const messagesEndRef = useRef(null);
+  const imageInputRef = useRef(null);
 
-    useEffect(() => {
-        // Setup Web Speech API for recognition (handles voice input)
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) return;
-        const rec = new SpeechRecognition();
-        rec.continuous = false;
-        rec.interimResults = false;
-        rec.lang = 'en-US';
-        rec.onresult = (e) => {
-            const t = e.results[0][0].transcript;
-            sendMessage(t, 'voice'); 
-            setListening(false);
-        };
-        rec.onend = () => setListening(false);
-        recognitionRef.current = rec;
-    }, []);
+  // ── Voice ──────────────────────────────────────────
+  useEffect(() => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) return;
+    const rec = new SR();
+    rec.continuous = false;
+    rec.interimResults = false;
+    rec.lang = 'en-US';
+    rec.onresult = (e) => { sendMessage(e.results[0][0].transcript, 'voice'); setListening(false); };
+    rec.onend = () => setListening(false);
+    recognitionRef.current = rec;
+  }, []);
 
-    useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages]);
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
-    const speakText = (text, lang = 'en-US') => {
-        if (!('speechSynthesis' in window)) return;
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = lang.startsWith('ml') ? 'ml-IN' : lang;
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(utter);
-    };
+  const speakText = (text) => {
+    if (!('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  };
 
-    // ===================================================
-    // INPUT HANDLERS
-    // ===================================================
+  // ── Handlers ───────────────────────────────────────
+  const startListening = () => {
+    if (!recognitionRef.current) return;
+    try { recognitionRef.current.start(); setListening(true); }
+    catch (e) { setListening(false); }
+  };
 
-    const startListening = () => {
-        if (!recognitionRef.current) return alert('Speech recognition not available in this browser.');
-        try {
-            recognitionRef.current.lang = language === 'auto' ? 'ml-IN' : language;
-            recognitionRef.current.start();
-            setListening(true);
-        } catch (err) {
-            console.error(err);
-            setListening(false);
-        }
-    };
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) { sendMessage(file, 'image'); e.target.value = null; }
+  };
 
-    const stopListening = () => {
-        recognitionRef.current?.stop();
-        setListening(false);
-    };
+  const handleSend = () => {
+    if (!input.trim()) return;
+    sendMessage(input.trim(), 'text');
+    setInput('');
+  };
 
-    const handleTextSend = () => {
-        sendMessage(input, 'text');
-        setInput('');
-    };
-    
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            sendMessage(file, 'image');
-            e.target.value = null; 
-        }
-    };
+  // ── Core sender ────────────────────────────────────
+  const sendMessage = async (inputData, type) => {
+    let endpoint, body, userContent;
 
-    // ===================================================
-    // MAIN SENDER FUNCTION (Handles all modalities)
-    // ===================================================
+    if (type === 'text' || type === 'voice') {
+      endpoint = '/chat';
+      userContent = type === 'voice' ? `🎙 ${inputData}` : inputData;
+      body = JSON.stringify({ prompt: inputData });
+    } else if (type === 'image') {
+      endpoint = '/ai/image';
+      userContent = `📷 Image uploaded: ${inputData.name}`;
+      const fd = new FormData();
+      fd.append('image', inputData);
+      body = fd;
+    } else return;
 
-  // src/components/ChatBot.jsx (The corrected sendMessage function)
+    setMessages(m => [...m, { role: 'user', content: userContent, time: new Date() }]);
+    setLoading(true);
 
-    const sendMessage = async (inputData, type) => {
-        let endpoint = '';
-        let body;
-        let userMsgContent;
+    try {
+      const res = await fetch(`/api${endpoint}`, {
+        method: 'POST',
+        headers: (type !== 'image') ? { 'Content-Type': 'application/json' } : {},
+        body,
+      });
+      if (!res.ok) throw new Error(res.status);
+      const data = await res.json();
+      const reply = data.advice || data.assistant?.content || 'No response received.';
+      setMessages(m => [...m, { role: 'assistant', content: reply, time: new Date() }]);
+      speakText(reply);
+    } catch (err) {
+      setMessages(m => [...m, {
+        role: 'assistant',
+        content: `⚠️ Could not reach the FarmEase API. Please ensure the backend is running (port 5000).`,
+        time: new Date(),
+        error: true,
+      }]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        // 1. Prepare Request based on Type
-        if (type === 'text' && typeof inputData === 'string' && inputData.trim()) {
-            // FIX: Set endpoint to '/chat' to match Node.js proxy route
-            endpoint = '/chat'; 
-            userMsgContent = inputData;
-            body = JSON.stringify({ prompt: inputData }); 
-            
-        } else if (type === 'image' && inputData instanceof File) {
-            // Image is correct as '/ai/image'
-            endpoint = '/ai/image';
-            userMsgContent = `[Image Sent: ${inputData.name} - Processing...]`;
-            const formData = new FormData();
-            formData.append('image', inputData); 
-            body = formData;
-            
-        } else if (type === 'voice' && typeof inputData === 'string' && inputData.trim()) {
-            // FIX: Set endpoint to '/chat' to match Node.js proxy route
-            endpoint = '/chat'; 
-            userMsgContent = `[Voice Input] ${inputData}`;
-            body = JSON.stringify({ prompt: inputData }); 
-            
-        } else {
-            return;
-        }
-        
-        // 2. Update UI and Load
-        const userMsg = { role: 'user', content: userMsgContent };
-        setMessages((m) => [...m, userMsg]);
-        setLoading(true);
+  const reset = () => setMessages([]);
+  const fmt = (d) => d?.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 
-        try {
-            // 3. Fetch Call (The fetch path is: /api/chat)
-            const res = await fetch(`/api${endpoint}`, {
-                method: 'POST',
-                headers: (type === 'text' || type === 'voice') ? { 'Content-Type': 'application/json' } : {},
-                body: body
-            });
+  // ── Render ─────────────────────────────────────────
+  return (
+    <div className="flex flex-col h-full bg-mint">
 
-            if (!res.ok) throw new Error(`API response not ok (${res.status})`);
-            const data = await res.json();
-            
-            // ... (Rest of the logic to handle response data) ...
+      {/* Session bar */}
+      <div className="px-4 py-2 bg-sage border-b border-cardBorder flex items-center gap-2 shrink-0">
+        <Zap className="w-3.5 h-3.5 text-accentGreen" />
+        <span className="text-xs font-semibold text-forest">Consultation Session {sessionId}</span>
+        <span className="ml-auto text-[10px] text-gray-400">Active Context: Sentinel-2 NDVI · Spraying ahead</span>
+      </div>
 
-            let assistantContent;
-            let speakTextContent = data.advice || data.assistant?.content; 
-            
-            if (data.advice) {
-                assistantContent = data.advice;
-            } else {
-                assistantContent = data.assistant?.content || 'Service failover initiated.';
-            }
+      {/* Message area */}
+      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
 
-            const assistantMsg = { role: 'assistant', content: assistantContent };
-            setMessages((m) => [...m, assistantMsg]);
-            
-            if (speakTextContent) speakText(speakTextContent, data.speakLang || 'en-US');
+        {/* Empty state / suggested queries */}
+        {messages.length === 0 && (
+          <div className="space-y-4">
+            {/* Greeting card */}
+            <div className="flex gap-3">
+              <div className="w-8 h-8 rounded-full bg-forest flex items-center justify-center shrink-0">
+                <Leaf className="w-4 h-4 text-white" />
+              </div>
+              <div className="bg-white border border-cardBorder rounded-2xl rounded-tl-sm px-4 py-3 max-w-[88%] shadow-sm">
+                <p className="text-xs font-semibold text-forest mb-1">
+                  Rebha Copilot <span className="font-normal text-gray-400 ml-1">Engine v4.2</span>
+                </p>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  Hello, I'm Rebha, your FarmEase agronomic intelligence copilot. I've ingested and
+                  analyzed your satellite NDVI multispectral imagery from today along with
+                  subterranean soil probes across your lots.
+                </p>
+                <p className="text-sm text-gray-700 mt-2 leading-relaxed">
+                  Overall vegetative vigor is strong{' '}
+                  <span className="font-semibold text-accentGreen">(NDVI 0.78)</span>, but I flagged a
+                  slight reflective spectral dip along the upper terrace sandy loam strip. How can I
+                  assist your crop decisions today?
+                </p>
+              </div>
+            </div>
 
-        } catch (err) {
-            console.error(err);
-            // The network error message seen in the image:
-            setMessages((m) => [...m, { role: 'assistant', content: `Error contacting server (${type}). The network is blocking the connection. Please check the Python console.` }]);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    // ===================================================
-    // RENDER (Full UI Structure)
-    // ===================================================
-
-    return (
-        <div className="flex flex-col h-full bg-green-50">
-            {/* Chat History Area */}
-            <div className="flex-1 overflow-y-auto p-3 mb-3 bg-gray-50">
-                {messages.slice(1).map((m, i) => (
-                    <div key={i} className={m.role === 'user' ? 'flex justify-end my-2' : 'flex justify-start my-2'}>
-                        <div className={m.role === 'user' ? 'inline-block bg-green-200 px-3 py-2 rounded-xl rounded-br-none max-w-[80%]' : 'inline-block bg-white px-3 py-2 rounded-xl rounded-tl-none shadow-md max-w-[80%] border'}>
-                            <div style={{ whiteSpace: 'pre-wrap' }}>{m.content}</div>
-                        </div>
-                    </div>
+            {/* Suggested queries */}
+            <div className="pl-11">
+              <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-2">Suggested Inquiries</p>
+              <div className="flex flex-col gap-2">
+                {SUGGESTED.map((s, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setInput(s); }}
+                    className="text-left text-xs text-forest bg-sage hover:bg-cardBorder border border-cardBorder rounded-lg px-3 py-2 transition"
+                  >
+                    {i < 3 ? '✦' : '✕'} {s}
+                  </button>
                 ))}
-                {loading && <div className="text-gray-500 my-2">🤖 Thinking...</div>}
-                <div ref={messagesEndRef} />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Chat messages */}
+        {messages.map((m, i) => (
+          <div key={i} className={`flex gap-3 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
+            {/* Avatar */}
+            <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 text-xs font-bold
+              ${m.role === 'user' ? 'bg-goldDark text-forestAlt' : 'bg-forest text-white'}`}>
+              {m.role === 'user' ? 'MV' : 'AI'}
             </div>
 
-            {/* Input and Controls Area */}
-            <div className="p-3 bg-white border-t">
-                
-                {/* Hidden File Input */}
-                <input 
-                    type="file" 
-                    id="image-upload-input" 
-                    accept="image/*" 
-                    ref={imageInputRef} 
-                    style={{ display: 'none' }} 
-                    onChange={handleImageChange}
-                />
-
-                <div className="flex gap-2 mb-2">
-                    {/* Multi-Modal Buttons */}
-                    <button 
-                        onClick={() => imageInputRef.current.click()} 
-                        disabled={loading} 
-                        className="p-2 rounded border bg-gray-50 hover:bg-gray-100 transition"
-                        title="Upload Crop Image"
-                    >
-                        <Camera className="w-5 h-5 text-green-600" />
-                    </button>
-
-                    {!listening ? (
-                        <button 
-                            onClick={startListening} 
-                            disabled={loading} 
-                            className="p-2 rounded border bg-gray-50 hover:bg-gray-100 transition"
-                            title="Start Voice Input"
-                        >
-                            <Mic className="w-5 h-5 text-blue-500" />
-                        </button>
-                    ) : (
-                        <button 
-                            onClick={stopListening} 
-                            disabled={loading} 
-                            className="p-2 rounded border bg-red-100 hover:bg-red-200 text-red-600 transition"
-                            title="Stop Voice Input"
-                        >
-                            <StopCircle className="w-5 h-5" />
-                        </button>
-                    )}
-                    
-                    {/* Language Selector (Kept for quick access) */}
-                    <select value={language} onChange={(e) => setLanguage(e.target.value)} disabled={loading} className="border rounded p-1 text-sm bg-gray-50">
-                        <option value="auto">Auto</option>
-                        <option value="ml-IN">Malayalam</option>
-                        <option value="en-US">English</option>
-                    </select>
-
-                    <button onClick={() => { setMessages([{ role: 'system', content: messages[0].content }]); }} className="ml-auto text-sm underline text-gray-500">Reset</button>
-
-                </div>
-
-                {/* Text Input Area */}
-                <div className="flex gap-2">
-                    <textarea 
-                        value={input} 
-                        onChange={(e) => setInput(e.target.value)} 
-                        onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleTextSend(); }}}
-                        rows={1} 
-                        className="flex-1 border rounded p-2 resize-none focus:ring-green-500" 
-                        placeholder="Type your question..." 
-                        disabled={loading}
-                    />
-                    <button 
-                        onClick={handleTextSend} 
-                        disabled={loading || !input.trim()} 
-                        className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 transition"
-                    >
-                        <Send className='w-5 h-5' />
-                    </button>
-                </div>
+            {/* Bubble */}
+            <div className={`max-w-[80%] ${m.role === 'user' ? 'items-end' : 'items-start'} flex flex-col gap-1`}>
+              <p className={`text-[10px] ${m.role === 'user' ? 'text-right text-gray-400' : 'text-gray-400'}`}>
+                {m.role === 'user' ? `Marcus Vance · ${fmt(m.time)}` : `Rebha Copilot · ${fmt(m.time)}`}
+              </p>
+              <div className={`px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-sm border
+                ${m.role === 'user'
+                  ? 'bg-forest text-white border-transparent rounded-tr-sm'
+                  : m.error
+                    ? 'bg-red-50 text-red-700 border-red-200 rounded-tl-sm'
+                    : 'bg-white text-gray-800 border-cardBorder rounded-tl-sm'
+                }`}
+                style={{ whiteSpace: 'pre-wrap' }}
+              >
+                {m.content}
+              </div>
             </div>
+          </div>
+        ))}
+
+        {/* Thinking indicator */}
+        {loading && (
+          <div className="flex gap-3">
+            <div className="w-7 h-7 rounded-full bg-forest flex items-center justify-center shrink-0">
+              <Leaf className="w-3.5 h-3.5 text-white" />
+            </div>
+            <div className="bg-white border border-cardBorder rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+              <div className="flex gap-1 items-center h-4">
+                <span className="w-1.5 h-1.5 bg-accentGreen rounded-full animate-bounce [animation-delay:0ms]" />
+                <span className="w-1.5 h-1.5 bg-accentGreen rounded-full animate-bounce [animation-delay:150ms]" />
+                <span className="w-1.5 h-1.5 bg-accentGreen rounded-full animate-bounce [animation-delay:300ms]" />
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* Input area */}
+      <div className="shrink-0 border-t border-cardBorder bg-white px-4 py-3 space-y-2">
+
+        {/* Toolbar */}
+        <div className="flex items-center gap-2">
+          <input type="file" accept="image/*" ref={imageInputRef} className="hidden" onChange={handleImageChange} />
+
+          <button
+            onClick={() => imageInputRef.current.click()}
+            disabled={loading}
+            title="Upload crop image"
+            className="p-2 rounded-lg border border-cardBorder hover:bg-sage transition text-accentGreen disabled:opacity-40"
+          >
+            <Camera className="w-4 h-4" />
+          </button>
+
+          <button
+            onClick={listening ? () => { recognitionRef.current?.stop(); setListening(false); } : startListening}
+            disabled={loading}
+            title={listening ? "Stop listening" : "Voice input"}
+            className={`p-2 rounded-lg border transition ${listening
+              ? 'border-red-300 bg-red-50 text-red-500'
+              : 'border-cardBorder hover:bg-sage text-accentGreen'} disabled:opacity-40`}
+          >
+            {listening ? <StopCircle className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+          </button>
+
+          {listening && (
+            <span className="text-xs text-red-500 animate-pulse font-medium">Listening…</span>
+          )}
+
+          <button
+            onClick={reset}
+            title="New session"
+            className="ml-auto p-2 rounded-lg border border-cardBorder hover:bg-sage transition text-gray-400"
+          >
+            <RotateCcw className="w-4 h-4" />
+          </button>
         </div>
-    );
+
+        {/* Text input row */}
+        <div className="flex gap-2">
+          <textarea
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
+            rows={1}
+            disabled={loading}
+            placeholder="Ask Rebha about crop health, variable-rate prescriptions, soil chemistry…"
+            className="flex-1 resize-none rounded-xl border border-cardBorder px-3 py-2 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest transition"
+          />
+          <button
+            onClick={handleSend}
+            disabled={loading || !input.trim()}
+            className="px-4 rounded-xl bg-goldDark text-forestAlt font-semibold text-sm hover:bg-goldLight transition disabled:opacity-40 flex items-center gap-1.5"
+          >
+            <Send className="w-4 h-4" />
+            <span className="hidden sm:inline">Dispatch</span>
+          </button>
+        </div>
+
+        {/* Footer note */}
+        <p className="text-[10px] text-gray-400 text-center leading-tight">
+          Rebha uses field sensor telemetry and multi-spectral satellite imagery. Always confirm high-stakes chemical applications with local crop insurance requirements.
+        </p>
+      </div>
+    </div>
+  );
 }

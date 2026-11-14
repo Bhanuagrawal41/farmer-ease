@@ -1,44 +1,81 @@
 import React, { useState } from 'react';
-import { MessageSquare, X } from 'lucide-react';
+import { X, Leaf, Minimize2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ChatBot from './ChatBot'; // <-- Renders the functional ChatBot component
+import ChatBot from './ChatBot';
 
 export default function FloatingChatButton() {
-  const [isOpen, setIsOpen] = useState(false); // Controls chat window visibility
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      {/* 1. The Floating Icon (Button) */}
+      {/* ── Floating trigger button ─────────────────────────── */}
       <motion.button
-        className="fixed bottom-6 right-6 bg-green-600 text-white rounded-full p-4 shadow-xl hover:bg-green-700 transition z-50 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-forest text-white pl-4 pr-5 py-3 rounded-full shadow-xl hover:bg-accentGreen transition-colors"
+        onClick={() => setIsOpen(true)}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.96 }}
+        style={{ display: isOpen ? 'none' : 'flex' }}
       >
-        {isOpen ? (
-          <X className="w-6 h-6" aria-label="Close Chat" />
-        ) : (
-          <MessageSquare className="w-6 h-6" aria-label="Open Chat Assistant" />
-        )}
+        <div className="w-6 h-6 rounded-full bg-goldDark flex items-center justify-center">
+          <Leaf className="w-3.5 h-3.5 text-forestAlt" />
+        </div>
+        <span className="text-sm font-semibold tracking-tight">New Advisory Query</span>
       </motion.button>
 
-      {/* 2. The Full Chat UI (Modal/Floating Box) */}
+      {/* ── Chat panel ──────────────────────────────────────── */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-0 right-0 top-0 left-0 md:bottom-10 md:right-10 md:top-auto md:left-auto md:w-96 md:h-[600px] bg-white rounded-t-xl md:rounded-xl shadow-2xl z-40 transition-all duration-300 overflow-hidden flex flex-col"
-            initial={{ opacity: 0, scale: 0.8, y: 100 }}
+            key="chat-panel"
+            initial={{ opacity: 0, scale: 0.92, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 100 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            exit={{ opacity: 0, scale: 0.92, y: 24 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+            className="fixed bottom-0 right-0 top-0 left-0
+                       md:bottom-6 md:right-6 md:top-auto md:left-auto
+                       md:w-[420px] md:h-[640px]
+                       z-50 flex flex-col rounded-none md:rounded-2xl
+                       shadow-2xl overflow-hidden border border-cardBorder"
           >
-            <header className="flex justify-between items-center p-3 bg-green-500 text-white shadow-md">
-                <h3 className="font-semibold">KrishiSakthi AI</h3>
-                <button onClick={() => setIsOpen(false)}>
-                    <X className="w-5 h-5"/>
-                </button>
-            </header>
-            <ChatBot /> 
+            {/* Panel header */}
+            <div className="flex items-center gap-3 px-4 py-3 bg-forest text-white shrink-0">
+              <div className="w-8 h-8 rounded-full bg-goldDark flex items-center justify-center">
+                <Leaf className="w-4 h-4 text-forestAlt" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold leading-none">Rebha AI</p>
+                <p className="text-[11px] text-white/60 mt-0.5 truncate">
+                  FarmEase Agronomic Intelligence · Engine v4.2
+                </p>
+              </div>
+
+              {/* Status dot */}
+              <span className="flex items-center gap-1 text-[10px] text-emerald-300 font-medium shrink-0">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Online
+              </span>
+
+              {/* Controls */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="ml-2 p-1.5 rounded-lg hover:bg-white/10 transition"
+                title="Minimise"
+              >
+                <Minimize2 className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-1.5 rounded-lg hover:bg-white/10 transition"
+                title="Close"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Chat body */}
+            <div className="flex-1 overflow-hidden">
+              <ChatBot />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
