@@ -102,11 +102,11 @@ export default function MainPage() {
   return (
     <div className="w-full bg-surface text-on-surface antialiased font-body-md overflow-x-hidden">
       {/* ==================== HEADER ==================== */}
-            ? "bg-surface/85 backdrop-blur-xl shadow-[0_2px_12px_rgba(45,38,26,0.08)] border-b border-surface-container-highest text-on-surface"
-            : "bg-black/30 backdrop-blur-md border-b border-white/15 text-white shadow-sm"
-          }`}
-      >
-        <header className="fixed top-0 left-0 w-full z-50 bg-surface/50 backdrop-blur-xl shadow-[0_1px_8px_rgba(45,38,26,0.04)] border-b border-surface-container-highest/60 transition-colors">
+      <header className={`fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b transition-colors ${
+        isScrolled
+          ? "bg-surface/85 shadow-[0_2px_12px_rgba(45,38,26,0.08)] border-surface-container-highest text-on-surface"
+          : "bg-black/30 shadow-sm border-white/15 text-white"
+      }`}>
           <div className="h-20 w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex items-center justify-between gap-3 lg:gap-5">
             {/* Logo & Brand */}
             <div className="flex items-center gap-3 xl:gap-6">
@@ -129,66 +129,43 @@ export default function MainPage() {
                   <span className="font-headline-sm text-lg sm:text-xl text-primary tracking-tight font-bold">
                     FarmEase
                   </span>
+                </span>
               </a>
 
               {/* Desktop Navigation */}
               <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-sm">
                 <button
                   onClick={() => scrollTo("hero")}
-                  className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${isScrolled
-                      ? "text-primary bg-primary/10"
-                      : "text-white bg-white/15"
-                    }`}
                   className="px-3 py-1.5 text-primary font-semibold border-b-2 border-primary cursor-pointer"
                 >
                   Home
                 </button>
                 <button
                   onClick={() => scrollTo("telemetry-radar")}
-                  className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${isScrolled
-                      ? "text-on-surface-variant hover:text-primary hover:bg-surface-container-low"
-                      : "text-white/85 hover:text-white hover:bg-white/10"
-                    }`}
                   className="px-3 py-1.5 font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 rounded-md py-space-xs transition-colors cursor-pointer whitespace-nowrap"
                 >
                   Field Analytics
                 </button>
                 <button
                   onClick={() => scrollTo("rebha-copilot")}
-                  className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${isScrolled
-                      ? "text-on-surface-variant hover:text-primary hover:bg-surface-container-low"
-                      : "text-white/85 hover:text-white hover:bg-white/10"
-                    }`}
                   className="px-3 py-1.5 font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 rounded-md py-space-xs transition-colors cursor-pointer whitespace-nowrap"
                 >
                   Crop Advisory
                 </button>
                 <button
                   onClick={() => scrollTo("ecosystem")}
-                  className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${isScrolled
-                      ? "text-on-surface-variant hover:text-primary hover:bg-surface-container-low"
-                      : "text-white/85 hover:text-white hover:bg-white/10"
-                    }`}
                   className="px-3 py-1.5 font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 rounded-md py-space-xs transition-colors cursor-pointer whitespace-nowrap"
                 >
                   Equipment &amp; Machinery
                 </button>
                 <button
                   onClick={() => scrollTo("yield-calculator")}
-                  className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${isScrolled
-                      ? "text-on-surface-variant hover:text-primary hover:bg-surface-container-low"
-                      : "text-white/85 hover:text-white hover:bg-white/10"
-                    }`}
                   className="px-3 py-1.5 font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 rounded-md py-space-xs transition-colors cursor-pointer whitespace-nowrap"
                 >
                   Smart Market
                 </button>
                 <button
                   onClick={() => scrollTo("testimonials")}
-                  className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${isScrolled
-                      ? "text-on-surface-variant hover:text-primary hover:bg-surface-container-low"
-                      : "text-white/85 hover:text-white hover:bg-white/10"
-                    }`}
                   className="px-3 py-1.5 font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 rounded-md py-space-xs transition-colors cursor-pointer whitespace-nowrap"
                 >
                   About Us
@@ -213,6 +190,7 @@ export default function MainPage() {
                     74°F · Fair Wind
                   </span>
                 </div>
+              </div>
 
                 {/* Language */}
                 <div
@@ -224,15 +202,13 @@ export default function MainPage() {
                     <span className="material-symbols-outlined text-[18px]">language</span>
                     <span>EN / Global</span>
                   </div>
+                </div>
 
                   {/* Phone */}
                   <a
-                    className={`hidden 2xl:flex items-center gap-1 text-xs font-medium transition-colors ${isScrolled ? "text-on-surface-variant hover:text-primary" : "text-white/80 hover:text-white"
-                      }`}
                     className="hidden 2xl:flex items-center gap-space-xs text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm"
                     href="tel:18003276327"
                   >
-                    <span className="material-symbols-outlined text-[16px]">call</span>
                     <span className="material-symbols-outlined text-[18px]">call</span>
                     <span>1-800-FARM-EASE</span>
                   </a>
@@ -243,10 +219,6 @@ export default function MainPage() {
                       scrollTo("yield-calculator");
                       setMobileMenuOpen(false);
                     }}
-                    className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all shadow-sm cursor-pointer whitespace-nowrap ${isScrolled
-                        ? "bg-primary hover:bg-primary-container text-on-primary"
-                        : "bg-secondary-container hover:bg-secondary-fixed-dim text-on-secondary-container"
-                      }`}
                     className="bg-primary hover:bg-primary-container text-on-primary font-body-sm text-body-sm font-medium px-3 sm:px-space-md py-space-sm rounded-lg shadow-sm transition-all cursor-pointer whitespace-nowrap"
                   >
                     Get Started
@@ -259,7 +231,6 @@ export default function MainPage() {
                         : "bg-white/10 text-white border-white/25 hover:bg-white/20"
                       }`}
                   >
-                    <span className="material-symbols-outlined text-[18px]">person</span>
                     <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 cursor-pointer">
                       <span className="material-symbols-outlined text-on-primary text-[18px]">person</span>
                     </div>
@@ -267,10 +238,6 @@ export default function MainPage() {
                     {/* Mobile Hamburger Toggle */}
                     <button
                       onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                      className={`lg:hidden p-2 rounded-lg transition-colors cursor-pointer ${isScrolled
-                          ? "text-primary hover:bg-surface-container"
-                          : "text-white hover:bg-white/15"
-                        }`}
                       className="lg:hidden p-2 rounded-lg text-primary hover:bg-surface-container transition-colors cursor-pointer"
                       aria-label="Toggle navigation menu"
                     >
@@ -293,7 +260,6 @@ export default function MainPage() {
                           scrollTo("hero");
                           setMobileMenuOpen(false);
                         }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-semibold hover:bg-white/10 transition-colors"
                         className="text-left py-2 px-3 rounded-lg text-sm font-semibold text-primary bg-primary/10 transition-colors"
                       >
                         Home
@@ -303,7 +269,6 @@ export default function MainPage() {
                           scrollTo("telemetry-radar");
                           setMobileMenuOpen(false);
                         }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors"
                         className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
                       >
                         Field Analytics
@@ -313,7 +278,6 @@ export default function MainPage() {
                           scrollTo("rebha-copilot");
                           setMobileMenuOpen(false);
                         }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors"
                         className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
                       >
                         Crop Advisory
@@ -323,7 +287,6 @@ export default function MainPage() {
                           scrollTo("ecosystem");
                           setMobileMenuOpen(false);
                         }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors"
                         className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
                       >
                         Equipment &amp; Machinery
@@ -333,7 +296,6 @@ export default function MainPage() {
                           scrollTo("yield-calculator");
                           setMobileMenuOpen(false);
                         }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors"
                         className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
                       >
                         Smart Market
@@ -343,7 +305,6 @@ export default function MainPage() {
                           scrollTo("testimonials");
                           setMobileMenuOpen(false);
                         }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors"
                         className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
                       >
                         About Us
@@ -358,7 +319,10 @@ export default function MainPage() {
                           <span>1-800-FARM-EASE</span>
                         </div>
                       </div>
+                    </div>
+                  </div>
         )}
+        </div>
                     </header>
 
                     {/* ==================== MAIN CONTENT ==================== */}
