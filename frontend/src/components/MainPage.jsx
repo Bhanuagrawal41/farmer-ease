@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Leaf, Menu, X } from "lucide-react";
+import React, { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function MainPage() {
   // Yield Calculator State
@@ -11,17 +11,7 @@ export default function MainPage() {
   const [subscribedEmail, setSubscribedEmail] = useState("");
   const [subscribedNotice, setSubscribedNotice] = useState(false);
 
-  // Navbar transparency & responsive state
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Copilot messages state for in-page interactive copilot
   const [copilotMessages, setCopilotMessages] = useState([
@@ -102,11 +92,7 @@ export default function MainPage() {
   return (
     <div className="w-full bg-surface text-on-surface antialiased font-body-md overflow-x-hidden">
       {/* ==================== HEADER ==================== */}
-      <header className={`fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b transition-colors ${
-        isScrolled
-          ? "bg-surface/85 shadow-[0_2px_12px_rgba(45,38,26,0.08)] border-surface-container-highest text-on-surface"
-          : "bg-black/30 shadow-sm border-white/15 text-white"
-      }`}>
+      <header className="fixed top-0 left-0 w-full z-50 bg-surface/95 backdrop-blur-xl border-b border-surface-container-highest text-on-surface shadow-[0_2px_12px_rgba(45,38,26,0.06)]">
           <div className="h-20 w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex items-center justify-between gap-3 lg:gap-5">
             {/* Logo & Brand */}
             <div className="flex items-center gap-3 xl:gap-6">
@@ -123,12 +109,9 @@ export default function MainPage() {
                   className="w-9 h-9 sm:w-10 sm:h-10 object-contain drop-shadow-sm"
                 />
                 <span
-                  className={`font-headline-sm text-lg sm:text-xl tracking-tight font-bold transition-colors ${isScrolled ? "text-primary" : "text-white"
-                    }`}
+                  className="font-headline-sm text-lg sm:text-xl text-primary tracking-tight font-bold"
                 >
-                  <span className="font-headline-sm text-lg sm:text-xl text-primary tracking-tight font-bold">
-                    FarmEase
-                  </span>
+                  FarmEase
                 </span>
               </a>
 
@@ -176,27 +159,13 @@ export default function MainPage() {
             {/* Right Utilities */}
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               {/* Weather Widget */}
-              <div
-                className={`hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border transition-colors ${isScrolled
-                    ? "bg-surface-container-low border-surface-container-high text-on-surface shadow-[0_2px_6px_-1px_rgba(45,38,26,0.04)]"
-                    : "bg-white/10 border-white/20 text-white backdrop-blur-sm"
-                  }`}
-              >
+              <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border border-surface-container-high bg-surface-container-low text-on-surface shadow-[0_2px_6px_-1px_rgba(45,38,26,0.04)]">
                 <span className="material-symbols-outlined text-secondary text-[16px]">wb_sunny</span>
                 <span className="font-label-md">74°F · Fair Wind</span>
-                <div className="hidden md:flex items-center gap-space-xs bg-surface-container-low/80 border border-surface-container-high/60 px-space-md py-space-xs rounded-full shadow-[0_2px_6px_-1px_rgba(45,38,26,0.04)]">
-                  <span className="material-symbols-outlined text-secondary text-[18px]">wb_sunny</span>
-                  <span className="font-label-md text-label-md text-on-surface font-medium">
-                    74°F · Fair Wind
-                  </span>
-                </div>
               </div>
 
                 {/* Language */}
-                <div
-                  className={`hidden xl:flex items-center gap-1 text-xs font-medium transition-colors ${isScrolled ? "text-on-surface-variant" : "text-white/80"
-                    }`}
-                >
+                <div className="hidden xl:flex items-center gap-1 text-xs font-medium text-on-surface-variant">
                   <span className="material-symbols-outlined text-[16px]">language</span>
                   <div className="hidden xl:flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
                     <span className="material-symbols-outlined text-[18px]">language</span>
@@ -225,15 +194,8 @@ export default function MainPage() {
                   </button>
 
                   {/* Profile Avatar */}
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 cursor-pointer border transition-colors ${isScrolled
-                        ? "bg-primary text-on-primary border-primary"
-                        : "bg-white/10 text-white border-white/25 hover:bg-white/20"
-                      }`}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 cursor-pointer">
-                      <span className="material-symbols-outlined text-on-primary text-[18px]">person</span>
-                    </div>
+                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 cursor-pointer border border-primary">
+                    <span className="material-symbols-outlined text-on-primary text-[18px]">person</span>
 
                     {/* Mobile Hamburger Toggle */}
                     <button
@@ -244,89 +206,80 @@ export default function MainPage() {
                       {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                     </button>
                   </div>
-                </div>
 
-                {/* Mobile Dropdown Menu */}
-                {mobileMenuOpen && (
-                  <div
-                    className={`lg:hidden w-full border-t border-b shadow-2xl px-5 py-4 flex flex-col gap-2 transition-all ${isScrolled
-                        ? "bg-surface/95 backdrop-blur-2xl border-surface-container-highest text-on-surface"
-                        : "bg-black/90 backdrop-blur-2xl border-white/15 text-white"
-                      }`}
-                  >
-                    <div className="lg:hidden w-full border-t border-b border-surface-container-highest bg-surface/95 backdrop-blur-2xl shadow-xl px-5 py-4 flex flex-col gap-2">
-                      <button
-                        onClick={() => {
-                          scrollTo("hero");
-                          setMobileMenuOpen(false);
-                        }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-semibold text-primary bg-primary/10 transition-colors"
-                      >
-                        Home
-                      </button>
-                      <button
-                        onClick={() => {
-                          scrollTo("telemetry-radar");
-                          setMobileMenuOpen(false);
-                        }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
-                      >
-                        Field Analytics
-                      </button>
-                      <button
-                        onClick={() => {
-                          scrollTo("rebha-copilot");
-                          setMobileMenuOpen(false);
-                        }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
-                      >
-                        Crop Advisory
-                      </button>
-                      <button
-                        onClick={() => {
-                          scrollTo("ecosystem");
-                          setMobileMenuOpen(false);
-                        }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
-                      >
-                        Equipment &amp; Machinery
-                      </button>
-                      <button
-                        onClick={() => {
-                          scrollTo("yield-calculator");
-                          setMobileMenuOpen(false);
-                        }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
-                      >
-                        Smart Market
-                      </button>
-                      <button
-                        onClick={() => {
-                          scrollTo("testimonials");
-                          setMobileMenuOpen(false);
-                        }}
-                        className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
-                      >
-                        About Us
-                      </button>
+                  {/* Mobile Dropdown Menu */}
+                  {mobileMenuOpen && (
+                  <div className="lg:hidden w-full border-t border-b border-surface-container-highest bg-surface/95 backdrop-blur-2xl shadow-xl px-5 py-4 flex flex-col gap-2 text-on-surface">
+                    <button
+                      onClick={() => {
+                        scrollTo("hero");
+                        setMobileMenuOpen(false);
+                      }}
+                      className="text-left py-2 px-3 rounded-lg text-sm font-semibold text-primary bg-primary/10 transition-colors"
+                    >
+                      Home
+                    </button>
+                    <button
+                      onClick={() => {
+                        scrollTo("telemetry-radar");
+                        setMobileMenuOpen(false);
+                      }}
+                      className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+                    >
+                      Field Analytics
+                    </button>
+                    <button
+                      onClick={() => {
+                        scrollTo("rebha-copilot");
+                        setMobileMenuOpen(false);
+                      }}
+                      className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+                    >
+                      Crop Advisory
+                    </button>
+                    <button
+                      onClick={() => {
+                        scrollTo("ecosystem");
+                        setMobileMenuOpen(false);
+                      }}
+                      className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+                    >
+                      Equipment &amp; Machinery
+                    </button>
+                    <button
+                      onClick={() => {
+                        scrollTo("yield-calculator");
+                        setMobileMenuOpen(false);
+                      }}
+                      className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+                    >
+                      Smart Market
+                    </button>
+                    <button
+                      onClick={() => {
+                        scrollTo("testimonials");
+                        setMobileMenuOpen(false);
+                      }}
+                      className="text-left py-2 px-3 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+                    >
+                      About Us
+                    </button>
 
-                      <div className="pt-2 mt-1 border-t border-white/10 flex items-center justify-between text-xs opacity-80">
-                        <div className="pt-2 mt-1 border-t border-surface-container-highest flex items-center justify-between text-xs text-on-surface-variant">
-                          <span className="flex items-center gap-1">
-                            <span className="material-symbols-outlined text-[14px]">wb_sunny</span>
-                            74°F · Fair Wind
-                          </span>
-                          <span>1-800-FARM-EASE</span>
-                        </div>
-                      </div>
+                    <div className="pt-2 mt-1 border-t border-surface-container-highest flex items-center justify-between text-xs text-on-surface-variant">
+                      <span className="flex items-center gap-1">
+                        <span className="material-symbols-outlined text-[14px]">wb_sunny</span>
+                        74°F · Fair Wind
+                      </span>
+                      <span>1-800-FARM-EASE</span>
                     </div>
                   </div>
-        )}
-        </div>
-                    </header>
+                )}
+              </div>
+            </div>
+          </header>
 
-                    {/* ==================== MAIN CONTENT ==================== */}
-                    <main className="w-full pt-20 bg-surface">
+          {/* ==================== MAIN CONTENT ==================== */}
+          <main className="w-full pt-20 bg-surface">
                       {/* ==================== 1. HERO SECTION ==================== */}
                       <section
                         id="hero"
